@@ -1,0 +1,181 @@
+/* Custom Properties */
+:root {
+    /* Colors */
+    --clr-gray-50: 220, 38%, 97%;
+    --clr-gray-500: 219, 13%, 44%;
+    
+    --clr-blue-50: 225, 100%, 96%;
+    --clr-blue-100: 220, 50%, 95%;
+    --clr-blue-300: 216, 47%, 78%;
+    --clr-blue-500: 223, 100%, 59%;
+    --clr-blue-850: 215, 27%, 32%;
+    --clr-blue-900: 216, 25%, 25%;
+    --clr-blue-950: 214, 24%, 23%;
+  
+    --clr-green-100: 151, 88%, 94%;
+    --clr-green-500: 151, 68%, 52%;
+  
+    --clr-purple-100: 278, 100%, 95%;
+    --clr-purple-600: 277, 91%, 56%;
+  
+    --clr-orange-50: 27, 100%, 96%;
+    --clr-orange-400: 22, 100%, 60%;
+  
+    --clr-red-500: 0, 82%, 63%;
+  
+  
+    /* Fonts */
+    --fs-preset-1: 9rem;
+    --fs-preset-2: 4rem;
+    --fs-preset-3: 2.25rem;
+    --fs-preset-4: 1.75rem;
+    --fs-preset-5: 1.5rem;
+    --fs-preset-6: 1.25rem;
+  
+    --fs-mobile-preset-1: 5.5rem;
+    --fs-mobile-preset-2: 2.5rem;
+    --fs-mobile-preset-3: 1.25rem;
+    --fs-mobile-preset-4: 1.125rem;
+    --fs-mobile-preset-5: 0.875rem;
+    
+  }
+  
+  /* General Resets */
+  * {
+      box-sizing: border-box;
+  }
+  
+  h1, h2, h3, h4, p {
+    margin: 0;
+  }
+  
+  html, body {
+      height: 100vh;
+  }
+  
+  /* Components */
+  
+  body {
+    background: white;
+    font-family: "Rubik", sans-serif;
+    color: black;
+  }
+  
+  
+  /* ------------------- */
+  /* Utility classes     */
+  /* ------------------- */
+  
+  .bg-dark { background-color: hsl(var(--clr-blue-900)); }
+  .bg-light { background-color: hsl(var(--clr-gray-50)); }
+  
+  /* Fonts */
+  .fs-1 {font-size: var(--fs-preset-1);}
+  .fs-2 {font-size: var(--fs-preset-2);}
+  .fs-3 {font-size: var(--fs-preset-3);}
+  .fs-4 {font-size: var(--fs-preset-4);}
+  .fs-5 {font-size: var(--fs-preset-5);}
+  .fs-6 {font-size: var(--fs-preset-6);}
+  
+  .fs-mobile-1 {font-size: var(--fs-mobile-preset-1);}
+  .fs-mobile-2 {font-size: var(--fs-mobile-preset-2);}
+  .fs-mobile-3 {font-size: var(--fs-mobile-preset-3);}
+  .fs-mobile-4 {font-size: var(--fs-mobile-preset-4);}
+  .fs-mobile-5 {font-size: var(--fs-mobile-preset-5);}
+  
+  .dark-font {
+    color: hsl(var(--clr-blue-900));
+  }
+  
+  .light-font { 
+    color: white;
+  }
+  
+  .light-theme {
+    background-color: white;
+    color: hsl(var(--clr-blue-900));
+  }
+  
+  .dark-theme {
+    background-color: hsl(var(--clr-blue-850));
+    color: white;
+  }
+  
+  .lh-1 {line-height: 1;}
+  .lh-2 {line-height: 1.2;}
+  .lh-3 {line-height: 1.5;}
+  
+  .flow > *:where(:not(:first-child)) {
+      margin-top: var(--flow-space, 1rem);
+  }
+  
+/* ------------------- */
+/*    Theme Switcher   */
+/* ------------------- */
+
+/* Switcher layout */
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    /* background-color: #2a3241; */
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  
+  /* Icons */
+  /* .theme-switcher i {
+    font-size: 1rem;
+    color: #ccc;
+  } */
+  
+  /* Switch base */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+  }
+  
+  /* Hide default checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider background */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-color: #a020f0;
+    border-radius: 34px;
+    transition: 0.3s;
+  }
+  
+  /* Circle knob */
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  
+  /* When toggled ON */
+  /* input:checked + .slider {
+    background-color: #a020f0; 
+  } */
+  
+  input:checked + .slider::before {
+    transform: translateX(25px);
+  }
+
+  /* ---------------------- */
