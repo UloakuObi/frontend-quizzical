@@ -19,8 +19,8 @@ export default function App() {
             </div>
             
             <section className="left-column">
-                <h1 className="fs-2">Welcome to the <span className="bold-text">Frontend Quiz!</span></h1>
-                <p>Pick a subject to get started.</p>
+                <h1 className="fs-2 lh-2">Welcome to the <span className="bold-text">Frontend Quiz!</span></h1>
+                <p className="sm-text">Pick a subject to get started.</p>
             </section>
 
             <section className="right-column flow">

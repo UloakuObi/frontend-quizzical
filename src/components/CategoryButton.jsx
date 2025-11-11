@@ -8,7 +8,7 @@ export default function CategoryButton({ children, src, category, className }) {
   let iconBox = clsx(`icon-box ${category}`);
 
   return (
-    <Button className={`btn-content ${className}`}>
+    <Button className={`btn-content btn-size fs-4 ${className}`}>
       <div className={iconBox}>
         <img className="icon" src={iconSrc} alt={`${category} icon`} />
       </div>
