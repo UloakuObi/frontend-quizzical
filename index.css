@@ -40,6 +40,16 @@
     
   }
   
+  [data-theme="light"] {
+    --bg-color: hsl(var(--clr-gray-50));
+    --text-color: #000000;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+  }
+
   /* General Resets */
   * {
       box-sizing: border-box;
@@ -53,12 +63,12 @@
       height: 100vh;
   }
   
-  /* Components */
   
   body {
-    background: white;
     font-family: "Rubik", sans-serif;
-    color: black;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   
@@ -70,18 +80,23 @@
   .bg-light { background-color: hsl(var(--clr-gray-50)); }
   
   /* Fonts */
-  .fs-1 {font-size: var(--fs-preset-1);}
-  .fs-2 {font-size: var(--fs-preset-2);}
-  .fs-3 {font-size: var(--fs-preset-3);}
-  .fs-4 {font-size: var(--fs-preset-4);}
-  .fs-5 {font-size: var(--fs-preset-5);}
-  .fs-6 {font-size: var(--fs-preset-6);}
+  .fs-1 {font-size: var(--fs-mobile-preset-1);}
+  .fs-2 {font-size: var(--fs-mobile-preset-2);}
+  .fs-3 {font-size: var(--fs-mobile-preset-3);}
+  .fs-4 {font-size: var(--fs-mobile-preset-4);}
+  .fs-5 {font-size: var(--fs-mobile-preset-5);}
+ 
+  @media (min-width: 768px) {
+    .fs-1 {font-size: var(--fs-preset-1);}
+    .fs-2 {font-size: var(--fs-preset-2);}
+    .fs-3 {font-size: var(--fs-preset-3);}
+    .fs-4 {font-size: var(--fs-preset-4);}
+    .fs-5 {font-size: var(--fs-preset-5);}
+    .fs-6 {font-size: var(--fs-preset-6);}
+  }
   
-  .fs-mobile-1 {font-size: var(--fs-mobile-preset-1);}
-  .fs-mobile-2 {font-size: var(--fs-mobile-preset-2);}
-  .fs-mobile-3 {font-size: var(--fs-mobile-preset-3);}
-  .fs-mobile-4 {font-size: var(--fs-mobile-preset-4);}
-  .fs-mobile-5 {font-size: var(--fs-mobile-preset-5);}
+
+  .bold-text { font-weight: 500;}
   
   .dark-font {
     color: hsl(var(--clr-blue-900));
@@ -108,6 +123,72 @@
   .flow > *:where(:not(:first-child)) {
       margin-top: var(--flow-space, 1rem);
   }
+
+
+/* Components */
+
+h1 {
+  font-weight: 300;
+}
+
+h1 > span {
+  display: block;
+}
+
+/* ------------------- */
+/*    Home Page   */
+/* ------------------- */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.header {
+  display: flex;
+  justify-content: end;
+  min-width: 100%;
+  border: 1px solid red;
+}
+
+.left-column {
+  border: 1px solid red;
+}
+
+.right-column {
+  border: 1px solid red;
+}
+
+
+@media (min-width: 1024px) {
+  .page-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "title title"
+        "left right";
+    gap: 1rem;
+  }
+  .header {
+    grid-area: title;
+    display: flex;
+    justify-content: end;
+    min-width: 100%;
+    border: 1px solid red;
+  }
+  
+  .left-column {
+    grid-area: left;
+    border: 1px solid red;
+  }
+  
+  .right-column {
+    grid-area: right;
+    border: 1px solid red;
+  }
+}
+
   
 /* ------------------- */
 /*    Theme Switcher   */
@@ -115,67 +196,279 @@
 
 /* Switcher layout */
 .theme-switcher {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    /* background-color: #2a3241; */
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-  }
-  
-  /* Icons */
-  /* .theme-switcher i {
-    font-size: 1rem;
-    color: #ccc;
-  } */
-  
-  /* Switch base */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 25px;
-  }
-  
-  /* Hide default checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* Slider background */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0;
-    right: 0; bottom: 0;
-    background-color: #a020f0;
-    border-radius: 34px;
-    transition: 0.3s;
-  }
-  
-  /* Circle knob */
-  .slider::before {
-    content: "";
-    position: absolute;
-    height: 19px;
-    width: 19px;
-    left: 3px;
-    top: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.3s;
-  }
-  
-  /* When toggled ON */
-  /* input:checked + .slider {
-    background-color: #a020f0; 
-  } */
-  
-  input:checked + .slider::before {
-    transform: translateX(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  /* background-color: #2a3241; */
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+/* Icons */
+/* .theme-switcher i {
+  font-size: 1rem;
+  color: #ccc;
+} */
+
+/* Switch base */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #a020f0;
+  border-radius: 34px;
+  transition: 0.3s;
+}
+
+/* Circle knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 19px;
+  width: 19px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* When toggled ON */
+/* input:checked + .slider {
+  background-color: #a020f0; 
+} */
+
+input:checked + .slider::before {
+  transform: translateX(25px);
+}
+
+/* ---------------------- */
+
+/* Logo  */
+div.logo-container {
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: 255px;
+  font-weight: 500;
+  padding: 0.85rem 0.5rem;
+  border: 1px solid hsl(var(--clr-blue-900));
+}
+
+
+/* Buttons */
+.options-btn {
+  display: flex;
+  gap: var(--spacing-100);
+  /* This will help for updating btn states to correct or incorrect */
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.75rem;
+}
+
+button {
+  border-radius: 12px;
+  border: none;
+  background-color: hsl(var(--clr-purple-600));
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+button.desktop-btn {
+  width: 410px;
+  height: 78px;
+}
+
+button.inactive {
+  background-color: hsl(var(--clr-purple-600), 0.4);
+}
+
+
+button.light-theme {
+  background-color: white;
+  color: hsl(var(--clr-blue-900));
+}
+
+button.dark-theme {
+  background-color: hsl(var(--clr-blue-850));
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 1.25rem;
+  box-shadow: 1px 1px 7px hsl(var(--clr-gray-500), 0.4);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+div.icon-box {
+  background-color: hsl(var(--clr-gray-50));
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0.125rem 0.25rem; */
+  margin-left: 0.75rem;
+}
+
+/* Is Chosen */
+div.is-chosen {
+  background-color: hsl(var(--clr-purple-600));
+}
+
+button.chosen-outline {
+  border: 2px solid hsl(var(--clr-purple-600));
+}
+
+/* Chosen and Correct */
+div.chosen-n-correct {
+  background-color: hsl(var(--clr-green-500));
+}
+
+button.chosen-correct-outline {
+  border: 2px solid hsl(var(--clr-green-500));
+}
+
+/* Chosen and Not Correct */
+div.chosen-not-correct {
+  background-color: hsl(var(--clr-red-500));
+}
+
+button.chosen-not-correct-outline {
+  border: 2px solid hsl(var(--clr-red-500));
+}
+
+/* Correct and Not Chosen */
+
+
+div.html {
+  background-color: hsl(var(--clr-orange-50));
+}
+
+div.css {
+  background-color: hsl(var(--clr-green-100));
+}
+
+div.javascript {
+  background-color: hsl(var(--clr-blue-50));
+}
+
+div.accessibility {
+  background-color: hsl(var(--clr-purple-100));
+}
+
+
+
+/* Main */
+
+
+/* Score Card  */
+div.score-card {
+  height: 350px;
+  width: 510px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  /* gap: 0.125rem; */
+  border-radius: 24px;
+  /* padding-block: 5rem; */
+}
+
+
+.score-card-dark-small-font {
+  color: hsl(var(--clr-blue-300));
+  font-weight: 400;
+}
+
+.score-card-light-small-font {
+  color: hsl(var(--clr-gray-500));
+  font-weight: 400;
+}
+
+/* Interactivity */
+/* button.options-btn:hover {
+  border: 2px solid hsl(var(--clr-purple-600));
+} */
+
+button.btn-content:hover {
+  border: 2px solid hsl(var(--clr-purple-600));
+}
+
+/* ------------------- */
+/*  Background Images  */
+/* ------------------- */
+
+/* Mobile Theme Images */
+[data-theme="light"] .bg-image {
+  background-image: url("/assets/images/pattern-background-mobile-light.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+[data-theme="dark"] .bg-image {
+  background-image: url("/assets/images/pattern-background-mobile-dark.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Tablet Theme Images */
+@media (min-width: 768px) {
+  [data-theme="light"] .bg-image {
+    background-image: url("/assets/images/pattern-background-tablet-light.svg");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    
   }
 
-  /* ---------------------- */
+  [data-theme="dark"] .bg-image {
+    background-image: url("/assets/images/pattern-background-tablet-dark.svg");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: left top;
+  }
+}
+
+/* Desktop Theme Images */
+@media (min-width: 1024px) {
+  [data-theme="light"] .bg-image {
+    background-image: url("/assets/images/pattern-background-desktop-light.svg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  [data-theme="dark"] .bg-image {
+    background-image: url("/assets/images/pattern-background-desktop-dark.svg");
+    background-size: cover;
+    background-position: center;
+  }
+}
