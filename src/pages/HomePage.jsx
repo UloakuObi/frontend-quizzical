@@ -6,7 +6,7 @@ import CategoryButton from "../components/CategoryButton.jsx";
 import htmlIcon from "/assets/images/icon-html.svg";
 import accessibilityIcon from "/assets/images/icon-accessibility.svg";
 import cssIcon from "/assets/images/icon-css.svg";
-import jsIcon from "/assets/images/icon-js.svg";
+import jsIcon from "/assets/images/icon-javascript.svg";
 
 export default function HomePage({onSelectCategory}) {
 
@@ -19,7 +19,7 @@ export default function HomePage({onSelectCategory}) {
 
     return (
         <main className="page-container">
-            <div className="header">
+            <div className="home-page-header">
                 <ThemeSwitcher />
             </div>
             

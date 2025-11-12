@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export default function Logo({ children, src, category, className }) {
   const logoContainer = clsx(`logo-container ${className}`)
-  const iconBox = clsx(`icon-box ${category}`);
+  const iconBox = clsx(`icon-box ${category.toLowerCase()}`);
 
   return (
     <div className={logoContainer}>

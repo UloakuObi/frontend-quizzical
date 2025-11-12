@@ -5,7 +5,7 @@ import sunIconLight from "/assets/images/icon-sun-light.svg"
 import moonIconLight from "/assets/images/icon-moon-light.svg"
 import { useThemeContext } from "../context/ThemeContext";
 
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher({className}) {
 
   const { theme, toggleTheme } = useThemeContext();
 
@@ -13,7 +13,7 @@ export default function ThemeSwitcher() {
   const moonIcon = theme === "light" ? moonIconDark : moonIconLight;
 
   return (
-    <div className="theme-switcher">
+    <div className={`theme-switcher ${className}`}>
       <img src={sunIcon} alt="sun icon" />
       <label className="switch">
         <input type="checkbox" id="theme-toggle" onChange={toggleTheme}/>

@@ -17,17 +17,11 @@ export default function App() {
       setCurrentPage("quiz")
     }
 
-    React.useEffect(() => {
-      console.log("Updated state:", category);
-      const quiz = data.quizzes
-      const selectedCategory = quiz.filter(quizCat => quizCat.title === category)
-      console.log(selectedCategory)
-    }, [category]);
-
+    
     return (
         <>
             {currentPage === "home" ? <HomePage onSelectCategory={selectCategory} />
-            : <QuizPage />}
+            : <QuizPage category={category}/>}
         </>
       );
 }
