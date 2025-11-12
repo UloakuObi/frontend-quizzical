@@ -47,7 +47,8 @@ export default function QuizPage({category}) {
                 {quiz.length > 0 && 
                 <>
                     <section className="left-column">
-                        <h1 className="fs-2 lh-2">{currentQuestion.question}</h1>
+                        <p className="sm-text">{`Question ${currentQuestionIndex + 1} of ${quiz.length}`}</p>
+                        <h3 className="fs-3 lh-2">{currentQuestion.question}</h3>
                     </section>
 
                     <section className="right-column flow">
