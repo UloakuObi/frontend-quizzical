@@ -2,13 +2,14 @@ import React from "react";
 import clsx from "clsx";
 import Button from "./Button.jsx";
 
-export default function CategoryButton({ children, src, category, className }) {
+export default function CategoryButton({ children, src, className, onClick }) {
   const iconSrc = src ? src : "";
-  //let btnClassnames = clsx(`desktop-btn fs-6 ${className}`);
+  const category = children.toLowerCase();
+  
   let iconBox = clsx(`icon-box ${category}`);
 
   return (
-    <Button className={`btn-content btn-size fs-4 ${className}`}>
+    <Button onClick={() => onClick(children)} className={`btn-content btn-size fs-4 ${className}`}>
       <div className={iconBox}>
         <img className="icon" src={iconSrc} alt={`${category} icon`} />
       </div>
@@ -16,3 +17,5 @@ export default function CategoryButton({ children, src, category, className }) {
     </Button>
   );
 }
+
+//let btnClassnames = clsx(`desktop-btn fs-6 ${className}`);
