@@ -21,6 +21,12 @@ export default function QuizPage({category}) {
     const currentQuestion = quiz.length > 0 ? quiz[currentQuestionIndex] : null;
     const errorFeedback = showFeedback === null && !selectedAnswer
 
+    // Ref Values
+    const correctAnswersCount = React.useRef(0);
+
+    // Other Values
+    const optionsId = ["A", "B", "C", "D"]
+
     React.useEffect(() => {
         console.log("Updated state:", category);
         const quizData = data.quizzes
@@ -32,9 +38,21 @@ export default function QuizPage({category}) {
         
     }, []);
   
-    console.log(quiz)
+    //console.log(quiz)
 
-    const optionsId = ["A", "B", "C", "D"]
+    React.useEffect(() => {
+        if (currentQuestion && selectedAnswer) {
+            if (currentQuestion.answer === selectedAnswer) {
+                correctAnswersCount.current++
+            }
+        }
+    }, [currentQuestion, selectedAnswer])
+
+    
+    if (showFeedback) {
+        console.log(correctAnswersCount)
+    }
+
 
     function selectAnswer(id, option) {
         setSelectedAnswer(option)
@@ -50,6 +68,12 @@ export default function QuizPage({category}) {
         }
     }
 
+    function handleNextQuestion() {
+        setShowFeedback(false)
+        setSelectedAnswer(null)
+        setChosenId(null)
+        setCurrentQuestionIndex(prev => prev + 1)
+    }
 
     return (
             <main className="page-container">
@@ -73,7 +97,7 @@ export default function QuizPage({category}) {
                         {
                             currentQuestion.options.map((option, index) => {
                                 const id = optionsId[index]
-                        
+
                                 return (
                                     <OptionButton
                                         key={id}
@@ -89,7 +113,7 @@ export default function QuizPage({category}) {
                                 )})
                         }
                         {showFeedback ? 
-                        <Button onClick={() => {}}>Next Question</Button>
+                        <Button onClick={handleNextQuestion}>Next Question</Button>
                         :
                         <Button className={errorFeedback && "inactive"} onClick={() => submitAnswer()}>Submit Answer</Button>
                         }
