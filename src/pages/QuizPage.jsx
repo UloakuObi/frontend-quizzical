@@ -1,6 +1,8 @@
 import React from "react"
 import data from "../data.js"
 import Logo from "../components/Logo.jsx";
+import Button from "../components/Button.jsx";
+import OptionButton from "../components/OptionButton.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import { useThemeContext } from "../context/ThemeContext.jsx";
 
@@ -11,9 +13,13 @@ export default function QuizPage({category}) {
     // State values
     const [quiz, setQuiz] = React.useState([])
     const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0)
+    const [showFeedback, setShowFeedback] = React.useState(false);
+    const [selectedAnswer, setSelectedAnswer] = React.useState(null);
+    const [chosenId, setChosenId] = React.useState(null)
 
     // State Derived Values
     const currentQuestion = quiz.length > 0 ? quiz[currentQuestionIndex] : null;
+    const errorFeedback = showFeedback === null && !selectedAnswer
 
     React.useEffect(() => {
         console.log("Updated state:", category);
@@ -27,11 +33,23 @@ export default function QuizPage({category}) {
     }, []);
   
     console.log(quiz)
-    
-    // console.log(currentQuestion)
-    // console.log(currentQuestion.question)
-    // console.log(currentQuestion.options)
-    // console.log(currentQuestion.answer)
+
+    const optionsId = ["A", "B", "C", "D"]
+
+    function selectAnswer(id, option) {
+        setSelectedAnswer(option)
+        setChosenId(id)
+        console.log(`button with ${id} clicked`)
+    }
+
+    function submitAnswer() {
+        if (!selectedAnswer) {
+            setShowFeedback(null)
+        } else if (selectedAnswer) {
+            setShowFeedback(true)
+        }
+    }
+
 
     return (
             <main className="page-container">
@@ -52,10 +70,30 @@ export default function QuizPage({category}) {
                     </section>
 
                     <section className="right-column flow">
-                        <h3 className="fs-4 lh-2">Some Option</h3>
-                        <h3 className="fs-4 lh-2">Some Option</h3>
-                        <h3 className="fs-4 lh-2">Some Option</h3>
-                        <h3 className="fs-4 lh-2">Some Option</h3>
+                        {
+                            currentQuestion.options.map((option, index) => {
+                                const id = optionsId[index]
+                        
+                                return (
+                                    <OptionButton
+                                        key={id}
+                                        className={`${theme}-theme`}
+                                        option={id}
+                                        isChosen={id === chosenId}
+                                        isCorrect={option === currentQuestion.answer}
+                                        showFeedback={showFeedback}
+                                        onClick={() => selectAnswer(id, option)}
+                                    >
+                                        {option}
+                                  </OptionButton>
+                                )})
+                        }
+                        {showFeedback ? 
+                        <Button onClick={() => {}}>Next Question</Button>
+                        :
+                        <Button className={errorFeedback && "inactive"} onClick={() => submitAnswer()}>Submit Answer</Button>
+                        }
+                        {errorFeedback && <p>Please select an answer!</p>}
                     </section>
                 </>}
             </main>
