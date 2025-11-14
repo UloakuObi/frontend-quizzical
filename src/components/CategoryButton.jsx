@@ -9,7 +9,7 @@ export default function CategoryButton({ children, src, className, onClick }) {
   let iconBox = clsx(`icon-box ${category}`);
 
   return (
-    <Button onClick={() => onClick(children)} className={`btn-content btn-size fs-4 ${className}`}>
+    <Button onClick={() => onClick(children)} className={`btn-content btn-size fs-6 ${className}`}>
       <div className={iconBox}>
         <img className="icon" src={iconSrc} alt={`${category} icon`} />
       </div>

@@ -2,11 +2,12 @@ import React from "react"
 import data from "../data.js"
 import Logo from "../components/Logo.jsx";
 import Button from "../components/Button.jsx";
+import ScoreCard from "../components/ScoreCard.jsx";
 import OptionButton from "../components/OptionButton.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import { useThemeContext } from "../context/ThemeContext.jsx";
 
-export default function QuizPage({category}) {
+export default function QuizPage({category, setCurrentPage}) {
 
     const { theme } = useThemeContext();
 
@@ -16,10 +17,13 @@ export default function QuizPage({category}) {
     const [showFeedback, setShowFeedback] = React.useState(false);
     const [selectedAnswer, setSelectedAnswer] = React.useState(null);
     const [chosenId, setChosenId] = React.useState(null)
+    const [displayScore, setDisplayScore] = React.useState(false)
 
     // State Derived Values
     const currentQuestion = quiz.length > 0 ? quiz[currentQuestionIndex] : null;
     const errorFeedback = showFeedback === null && !selectedAnswer
+    const getQuizScore = !showFeedback && currentQuestionIndex === (quiz.length - 1)
+    //const restartQuiz = !showFeedback && displayScore
 
     // Ref Values
     const correctAnswersCount = React.useRef(0);
@@ -60,7 +64,7 @@ export default function QuizPage({category}) {
         console.log(`button with ${id} clicked`)
     }
 
-    function submitAnswer() {
+    function handleSubmitAnswer() {
         if (!selectedAnswer) {
             setShowFeedback(null)
         } else if (selectedAnswer) {
@@ -75,6 +79,59 @@ export default function QuizPage({category}) {
         setCurrentQuestionIndex(prev => prev + 1)
     }
 
+    function handleGetScore() {
+        setDisplayScore(true)
+        setShowFeedback(false)
+    }
+
+    function handlePlayAgain() {
+        setCurrentPage("home")
+    }
+
+    let questionElement = null;
+
+    if (quiz.length > 0 && currentQuestion?.options) {
+        questionElement = currentQuestion.options.map((option, index) => {
+            const id = optionsId[index]
+
+            return (
+                <OptionButton
+                    key={id}
+                    className={`${theme}-theme`}
+                    option={id}
+                    isChosen={id === chosenId}
+                    isCorrect={option === currentQuestion.answer}
+                    showFeedback={showFeedback}
+                    onClick={() => selectAnswer(id, option)}
+                >
+                    {option}
+              </OptionButton>
+            )})
+    }
+
+    let actionButton;
+
+    if (showFeedback) {
+    actionButton = (
+        <Button onClick={handleNextQuestion}>Next Question</Button>
+    ); 
+    } else if (displayScore) {
+        actionButton = (
+          <Button onClick={handlePlayAgain}>Play Again</Button>
+        );
+    } else if (getQuizScore) {
+        actionButton = (
+          <Button onClick={handleGetScore}>Submit & Get Result</Button>
+        );
+    } else {
+    actionButton = (
+        <Button className={errorFeedback && "inactive"} onClick={handleSubmitAnswer}>
+        Submit Answer
+        </Button>
+    );
+    }
+
+
     return (
             <main className="page-container">
                 <div className="quiz-page-header">
@@ -88,38 +145,44 @@ export default function QuizPage({category}) {
 
                 {quiz.length > 0 && 
                 <>
+                    {/* LEFT COLUMN */}
                     <section className="left-column">
-                        <p className="sm-text">{`Question ${currentQuestionIndex + 1} of ${quiz.length}`}</p>
-                        <h3 className="fs-3 lh-2">{currentQuestion.question}</h3>
+                        {
+                        displayScore ? 
+                            (
+                            <h1 className="fs-2 lh-2">Quiz Completed<span className="bold-text">You scored...</span></h1>
+                            ) : (
+                                <>
+                                    <p className="sm-text">{`Question ${currentQuestionIndex + 1} of ${quiz.length}`}</p>
+                                    <h3 className="fs-3 lh-2">{currentQuestion.question}</h3>
+                                </>
+                            )
+                        }
                     </section>
 
+                    {/* RIGHT COLUMN */}
                     <section className="right-column flow">
                         {
-                            currentQuestion.options.map((option, index) => {
-                                const id = optionsId[index]
-
-                                return (
-                                    <OptionButton
-                                        key={id}
-                                        className={`${theme}-theme`}
-                                        option={id}
-                                        isChosen={id === chosenId}
-                                        isCorrect={option === currentQuestion.answer}
-                                        showFeedback={showFeedback}
-                                        onClick={() => selectAnswer(id, option)}
-                                    >
-                                        {option}
-                                  </OptionButton>
-                                )})
+                        displayScore ? 
+                            (
+                            <ScoreCard score={correctAnswersCount.current} className={`${theme}-theme`}>
+                                <Logo src={`/assets/images/icon-${category.toLowerCase()}.svg`} 
+                                      className={`${theme}-theme-font fs-6`}
+                                      category={category}>
+                                    {category}
+                                </Logo>
+                            </ScoreCard>
+                            )
+                            : (
+                                questionElement  /* array of OptionButtons */
+                            )
                         }
-                        {showFeedback ? 
-                        <Button onClick={handleNextQuestion}>Next Question</Button>
-                        :
-                        <Button className={errorFeedback && "inactive"} onClick={() => submitAnswer()}>Submit Answer</Button>
-                        }
+                        {actionButton}  {/* Next / Submit / Get Score */}
                         {errorFeedback && <p>Please select an answer!</p>}
                     </section>
                 </>}
             </main>
             )
 }
+
+

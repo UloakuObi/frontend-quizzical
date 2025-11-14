@@ -13,7 +13,7 @@ export default function OptionButton({
   showFeedback,
   onClick
 }) {
-  let btnClassnames = clsx(`btn-content btn-size fs-4 ${className}`);
+  let btnClassnames = clsx(`btn-content btn-size fs-6 ${className}`);
   let optionIdBox = `option-badge`;
 
   const darkTheme = btnClassnames.split(" ").includes("dark-theme");
@@ -23,7 +23,7 @@ export default function OptionButton({
   if (isChosen) {
     optionIdBox = "option-badge is-chosen";
     btnClassnames = clsx(
-      `options-btn btn-size fs-4 chosen-outline ${className}`,
+      `options-btn btn-size fs-6 chosen-outline ${className}`,
     );
   }
 
@@ -41,20 +41,20 @@ export default function OptionButton({
       feedbackIcon = iconCorrect;
       optionIdBox = `option-badge chosen-n-correct`;
       btnClassnames = clsx(
-        `options-btn btn-size fs-4 chosen-correct-outline ${className}`,
+        `options-btn btn-size fs-6 chosen-correct-outline ${className}`,
       );
     } else if (isChosen && !isCorrect) {
       feedback = isChosen && !isCorrect;
       feedbackIcon = iconWrong;
       optionIdBox = `option-badge chosen-not-correct`;
       btnClassnames = clsx(
-        `options-btn btn-size fs-4 chosen-not-correct-outline ${className}`,
+        `options-btn btn-size fs-6 chosen-not-correct-outline ${className}`,
       );
     } else if (!isChosen && isCorrect) {
       feedback = !isChosen && isCorrect;
       feedbackIcon = iconCorrect;
       btnClassnames = clsx(
-        `options-btn btn-size fs-4 ${className}`,
+        `options-btn btn-size fs-6 ${className}`,
       );
     }
   }

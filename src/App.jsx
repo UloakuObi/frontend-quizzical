@@ -21,7 +21,7 @@ export default function App() {
     return (
         <>
             {currentPage === "home" ? <HomePage onSelectCategory={selectCategory} />
-            : <QuizPage category={category}/>}
+            : <QuizPage category={category} setCurrentPage={setCurrentPage}/>}
         </>
       );
 }
