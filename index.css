@@ -181,6 +181,7 @@ h1 > span {
   border: 1px solid red;
 }
 
+
 .right-column {
   border: 1px solid red;
   display: flex;
@@ -192,14 +193,15 @@ h1 > span {
 @media (min-width: 1024px) {
   .page-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: clamp(360px, 35vw, 500px) 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: 
         "title title"
         "left right";
-    row-gap: 3rem;
+    row-gap: 4rem;
     column-gap: 1rem;
-    padding: 3.5rem;
+    /* padding-top: 3rem; */
+    padding: clamp(2.5rem, 35vw, 6.5rem);
   }
   .home-page-header {
     grid-area: title;
@@ -220,6 +222,12 @@ h1 > span {
   .left-column {
     grid-area: left;
     border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-column > :last-child {
+    margin-top: 70%;  /* pushes it to the bottom */
   }
   
   .right-column {
@@ -355,12 +363,16 @@ button.dark-theme {
   background-color: hsl(var(--clr-blue-850));
 }
 
+.option-btn-content,
 .btn-content {
   display: flex;
   align-items: center;
   text-align: left;
   /* justify-content: center; */
   gap: 1.25rem;
+}
+
+.btn-content {
   box-shadow: 1px 1px 7px hsl(var(--clr-gray-500), 0.4);
 }
 
@@ -452,8 +464,6 @@ div.accessibility {
 
 /* Score Card  */
 div.score-card {
-  /* height: 350px;
-  width: 510px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,7 +471,6 @@ div.score-card {
   font-weight: 500;
   gap: 0.5rem;
   border-radius: 12px;
-  /* padding-block: 5rem; */
 }
 
 div.score-card-size {
@@ -486,13 +495,69 @@ div.score-card-size {
 }
 
 /* Interactivity */
-/* button.options-btn:hover {
-  border: 2px solid hsl(var(--clr-purple-600));
-} */
 
 button.btn-content:hover {
   border: 2px solid hsl(var(--clr-purple-600));
 }
+
+/* ---------------- */
+/*   Progress Bar   */
+/* ---------------- */
+div.progress-wrapper {
+  border-radius: 50px;
+  padding-inline: 0.2rem;
+  height: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+div.progress-dark {
+  background-color: hsl(var(--clr-blue-850));
+}
+
+div.progress-light {
+  background-color: white;
+}
+
+progress {
+  width: 100%;
+  height: 50%;
+  border: none;
+}
+
+progress.progress-dark {
+  --progress-track: hsl(var(--clr-blue-850));
+  --progress-fill: hsl(var(--clr-purple-600));
+}
+
+progress.progress-light {
+  --progress-track: white;
+  --progress-fill: hsl(var(--clr-purple-600));
+}
+
+.progress-light::-webkit-progress-bar,
+.progress-dark::-webkit-progress-bar {
+  border-radius: 50px;
+  background-color: var(--progress-track);
+}
+
+.progress-light::-webkit-progress-value,
+.progress-dark::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: var(--progress-fill);
+  transition: width 0.3s ease;
+}
+
+.progress-light::-moz-progress-bar,
+.progress-dark::-moz-progress-bar {
+  border-radius: 50px;
+  background-color: var(--progress-fill);
+  transition: width 0.3s ease;
+}
+
 
 /* ------------------- */
 /*  Background Images  */
@@ -528,6 +593,10 @@ button.btn-content:hover {
     background-position: left top;
   }
 
+  .page-container {
+    padding: clamp(2rem, 30vw, 5rem);
+  }
+
   .theme-switcher {
     gap: 0.75rem;
   }
@@ -539,6 +608,10 @@ button.btn-content:hover {
   div.score-card-size {
     width: 100%;
     height: 340px;
+  }
+
+  div.progress-wrapper {
+    margin-top: 2.5rem;
   }
 }
 
@@ -557,12 +630,17 @@ button.btn-content:hover {
   }
 
   button.btn-size {
-    width: 410px;
-    height: 78px;
+    width: clamp(410px, 40vw, 465px);
+    height: clamp(78px, 40vw, 95px);
   }
 
   div.score-card-size {
     width: 410px;
     height: 350px;
   }
+
+  div.progress-wrapper {
+    margin-top: 6.5rem;
+  }
 }
+

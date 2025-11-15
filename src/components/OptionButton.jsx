@@ -61,7 +61,7 @@ export default function OptionButton({
 
   return (
     <Button onClick={onClick} className={btnClassnames}>
-      <div className="btn-content">
+      <div className="option-btn-content">
         <div className={optionIdBox}>
           <p className={fontColor}>{option}</p>
         </div>

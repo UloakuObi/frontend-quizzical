@@ -3,6 +3,7 @@ import data from "../data.js"
 import Logo from "../components/Logo.jsx";
 import Button from "../components/Button.jsx";
 import ScoreCard from "../components/ScoreCard.jsx";
+import ProgressBar from "../components/ProgressBar.jsx";
 import OptionButton from "../components/OptionButton.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
 import { useThemeContext } from "../context/ThemeContext.jsx";
@@ -23,7 +24,6 @@ export default function QuizPage({category, setCurrentPage}) {
     const currentQuestion = quiz.length > 0 ? quiz[currentQuestionIndex] : null;
     const errorFeedback = showFeedback === null && !selectedAnswer
     const getQuizScore = !showFeedback && currentQuestionIndex === (quiz.length - 1)
-    //const restartQuiz = !showFeedback && displayScore
 
     // Ref Values
     const correctAnswersCount = React.useRef(0);
@@ -155,6 +155,7 @@ export default function QuizPage({category, setCurrentPage}) {
                                 <>
                                     <p className="sm-text">{`Question ${currentQuestionIndex + 1} of ${quiz.length}`}</p>
                                     <h3 className="fs-3 lh-2">{currentQuestion.question}</h3>
+                                    <ProgressBar className={`progress-${theme}`} currentValue={currentQuestionIndex + 1} maxValue={quiz.length} />
                                 </>
                             )
                         }
