@@ -3,11 +3,11 @@ import clsx from "clsx";
 import Logo from "./Logo.jsx";
 
 export default function ScoreCard({ children, score, className }) {
-  const cardClassnames = clsx(`score-card score-card-size ${className}`);
+  const cardClassnames = clsx(`score-card score-card-size bold-text ${className}`);
   const darkTheme = cardClassnames.split(" ").includes("dark-theme");
   const pTextClassname = darkTheme
-    ? "score-card-dark-small-font fs-4"
-    : "score-card-light-small-font fs-4";
+    ? "score-card-dark-small-font semi-bold-text fs-4"
+    : "score-card-light-small-font semi-bold-text fs-4";
   return (
     <div className={cardClassnames}>
       {children}

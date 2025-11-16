@@ -3,6 +3,8 @@ import data from "../data.js"
 import Logo from "../components/Logo.jsx";
 import Button from "../components/Button.jsx";
 import ScoreCard from "../components/ScoreCard.jsx";
+import errorIcon from "/assets/images/icon-error.svg"
+import ErrorPopup from "../components/ErrorPopup.jsx";
 import ProgressBar from "../components/ProgressBar.jsx";
 import OptionButton from "../components/OptionButton.jsx";
 import ThemeSwitcher from "../components/ThemeSwitcher.jsx";
@@ -125,7 +127,7 @@ export default function QuizPage({category, setCurrentPage}) {
         );
     } else {
     actionButton = (
-        <Button className={errorFeedback && "inactive"} onClick={handleSubmitAnswer}>
+        <Button className={errorFeedback ? "inactive" : ""} onClick={handleSubmitAnswer}>
         Submit Answer
         </Button>
     );
@@ -179,7 +181,7 @@ export default function QuizPage({category, setCurrentPage}) {
                             )
                         }
                         {actionButton}  {/* Next / Submit / Get Score */}
-                        {errorFeedback && <p>Please select an answer!</p>}
+                        {errorFeedback && <ErrorPopup src={errorIcon} className={`error-${theme}`} />}
                     </section>
                 </>}
             </main>
