@@ -21,20 +21,20 @@ Users should be able to:
 
 ### Screenshot
 
-**Links**
-Live Site URL: Add live site URL here
-Solution Work-through: Add article URL here
+**Links:**
+- Live Site URL: Add live site URL here
+- Solution Work-through: Add article URL here
 
 ### Built with
-React - JS library
-Mobile-first workflow
-CSS custom properties
-Flexbox
-CSS Grid
+- React - JS library
+- Mobile-first workflow
+- CSS custom properties
+- Flexbox
+- CSS Grid
 
 ### Author
-- Frontend Mentor - @yourusername
-- Twitter - @yourusername
+- Frontend Mentor - @myusername
+- Twitter - @myusername
 
 ### Acknowledgments
 
