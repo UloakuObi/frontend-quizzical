@@ -1,6 +1,6 @@
 # **Frontend Mentor - Frontend quiz app solution**
 
-This is a solution to the (Frontend quiz app challenge on Frontend Mentor)[https://www.frontendmentor.io/challenges/frontend-quiz-app-BE7xkzXQnU]. Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Frontend quiz app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/frontend-quiz-app-BE7xkzXQnU). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Overview
 
@@ -20,10 +20,11 @@ Users should be able to:
 - Bonus: Change the app's theme between light and dark
 
 ### Screenshot
+![Screenshot of quiz app home page.](an-actual-link-to-the-screenshot-will-go-here)
 
 **Links:**
-- Live Site URL: Add live site URL here
-- Solution Work-through: Add article URL here
+- Live Site URL: [Add live site URL here](some-link-will-go-here)
+- Solution Work-through: [Add article URL here](some-link-will-go-here)
 
 ### Built with
 - React - JS library
@@ -33,8 +34,8 @@ Users should be able to:
 - CSS Grid
 
 ### Author
-- Frontend Mentor - @myusername
-- Twitter - @myusername
+- Frontend Mentor - [@myusername](some-link-will-go-here)
+- Twitter - [@myusername](the-actuall-link-will-go-here)
 
 ### Acknowledgments
 
