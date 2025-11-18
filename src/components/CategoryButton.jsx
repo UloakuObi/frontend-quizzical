@@ -17,5 +17,3 @@ export default function CategoryButton({ children, src, className, onClick }) {
     </Button>
   );
 }
-
-//let btnClassnames = clsx(`desktop-btn fs-6 ${className}`);

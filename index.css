@@ -168,7 +168,6 @@ h1 > span {
   align-items: center;
   justify-content: space-between;
   min-width: 100%;
-  border: 1px solid red;
 }
 
 .home-page-header {
@@ -176,16 +175,14 @@ h1 > span {
   align-items: end;
   justify-content: end;
   min-width: 100%;
-  border: 1px solid red;
 }
 
-.left-column {
+/* .left-column {
   border: 1px solid red;
-}
+} */
 
 
 .right-column {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   flex-basis: max-content;
@@ -202,8 +199,8 @@ h1 > span {
         "left right";
     row-gap: 4rem;
     column-gap: clamp(2.5rem, 30vw, 4.5rem);
-    /* padding-top: 3rem; */
-    padding: clamp(2.5rem, 30vw, 4.5rem);
+    /* padding-top: 1rem; */
+    padding-inline: clamp(2.5rem, 30vw, 4.5rem);
     place-content: center;
   }
   .home-page-header {
@@ -211,7 +208,6 @@ h1 > span {
     display: flex;
     justify-content: end;
     min-width: 100%;
-    border: 1px solid red;
   }
 
   .quiz-page-header {
@@ -219,12 +215,10 @@ h1 > span {
     display: flex;
     justify-content: space-between;
     min-width: 100%;
-    border: 1px solid red;
   }
   
   .left-column {
     grid-area: left;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
   }
@@ -235,7 +229,6 @@ h1 > span {
   
   .right-column {
     grid-area: right;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -315,9 +308,7 @@ div.logo-container {
   align-items: center;
   gap: 0.95rem;
   width: 255px;
-  /* font-weight: 500; */
   padding: 0.85rem 0.5rem 0.85rem 0;
-  /* border: 1px solid hsl(var(--clr-blue-900)); */
 }
 
 div.logo-container .icon-box {
@@ -342,7 +333,6 @@ button {
   color: white;
   cursor: pointer;
   font-family: inherit;
-  /* font-weight: 500; */
 }
 
 button.btn-size {
@@ -637,7 +627,7 @@ progress.progress-light {
   }
 
   div.score-card-size {
-    width: 410px;
+    width: 100%;
     height: 350px;
   }
 

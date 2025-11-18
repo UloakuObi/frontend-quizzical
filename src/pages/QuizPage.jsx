@@ -82,8 +82,14 @@ export default function QuizPage({category, setCurrentPage}) {
     }
 
     function handleGetScore() {
-        setDisplayScore(true)
-        setShowFeedback(false)
+        if (!selectedAnswer) {
+            setShowFeedback(null)
+        }
+        if (selectedAnswer) {
+            setDisplayScore(true)
+            setShowFeedback(false)
+        }
+        
     }
 
     function handlePlayAgain() {
